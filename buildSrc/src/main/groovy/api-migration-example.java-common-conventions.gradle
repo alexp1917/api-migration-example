@@ -9,6 +9,9 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'com.fasterxml.uuid:java-uuid-generator:4.0.1'
+    testImplementation 'org.hamcrest:hamcrest:2.2' // assertions
+    testImplementation 'org.mockito:mockito-core:4+' // mocking
 }
 
 tasks.withType(Test) { useJUnitPlatform() }
