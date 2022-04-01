@@ -1,0 +1,4 @@
+plugins {
+    id 'api-migration-example.java-common-conventions'
+    id 'java-library'
+}

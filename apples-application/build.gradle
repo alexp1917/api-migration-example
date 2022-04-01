@@ -1,0 +1,13 @@
+plugins {
+    id 'api-migration-example.java-application-conventions'
+    id 'eclipse'
+    id 'idea'
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:30.1.1-jre'
+}
+
+application {
+    mainClass = 'org.example.migration.api.App'
+}
