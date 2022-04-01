@@ -5,6 +5,9 @@ import lombok.experimental.Accessors;
 
 import java.util.UUID;
 
+/**
+ * The internal data model for use by the application - not for talking to other backend applications
+ */
 @Accessors(chain = true)
 @Data
 public class Apple {

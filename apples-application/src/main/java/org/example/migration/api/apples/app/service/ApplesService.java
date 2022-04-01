@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * This service will query the backend by talking to the translator service
+ */
 @Service
 public class ApplesService {
     public Apple getOne(UUID id) {

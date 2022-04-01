@@ -12,6 +12,9 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Top most layer - this is, e.g., what the frontend will interact with
+ */
 @Controller
 @RequestMapping(path = "/apples")
 public class ApplesController extends BaseController {
