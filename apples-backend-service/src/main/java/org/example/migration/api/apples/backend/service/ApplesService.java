@@ -1,10 +1,10 @@
 package org.example.migration.api.apples.backend.service;
 
 
+import org.example.migration.api.apples.backend.model.EntityBuilder;
 import org.example.migration.common.backend.Result;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -15,17 +15,17 @@ public class ApplesService {
     public Result getOne(UUID id) {
         Result result = new Result();
         result.setCount(1);
-        result.setEntity(new ArrayList<>());
-        result.getEntity().add(new Result.Property().setKey("id").setValue(id.toString()));
-        result.getEntity().add(new Result.Property().setKey("name").setValue("example"));
-        result.getEntity().add(new Result.Property().setKey("color").setValue("red"));
+        EntityBuilder entity = new EntityBuilder()
+                .add(new Result.Property().setKey("id").setValue(id.toString()))
+                .add(new Result.Property().setKey("name").setValue("example"))
+                .add(new Result.Property().setKey("color").setValue("red"));
+        result.getEntity().add(entity.build());
 
         return result;
     }
 
     public Result getAllApples(int count) {
         Result result = new Result();
-        result.setEntity(new ArrayList<>());
 
         for (int i = 0; i < count; i++) {
             Result one = getOne(UUID.randomUUID());

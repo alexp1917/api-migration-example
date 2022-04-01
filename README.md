@@ -16,8 +16,8 @@ sequenceDiagram
     Translation Layer ->> API Backend: /services/token
     API Backend ->> Translation Layer: $token (e.g. =12345)
     Translation Layer ->> API Backend: /services/orchard/apples?token=$token&count=10
-    API Backend ->> Translation Layer: {"count":10,[{"entity":[{"key":"name","value":"apple1","color":"red"}]}]}
-    Translation Layer ->> Application: {"count":10,[{"name":"apple1","color":"red"}]}
+    API Backend ->> Translation Layer: {"count":10,"entity":[[{"key":"name","value":"apple1"},{"key":"color","value":"red"}]]}
+    Translation Layer ->> Application: {"count":10,"entity":[{"name":"apple1","color":"red"}]}
 ```
 
 and ending up with something like this:
@@ -34,9 +34,9 @@ sequenceDiagram
     API Backend ->> Translation Layer: $token (e.g. =12345)
     Translation Layer ->> API Backend: /services/farm/orchard/apples?token=$token&total=10
     Note over API Backend,Translation Layer: Some parameters changed (size is now total)
-    API Backend ->> Translation Layer: {"total":10,[{"entities":[{"label":"apple1","version":1,"properties":{"color":"red"}}]}]}
+    API Backend ->> Translation Layer: {"total":10,"entities":[{"label":"apple1","version":1,"properties":{"color":"red"}}]}
     Note over API Backend,Translation Layer: The properties are now nested under 'properties', except 'name' (now 'label')
-    Translation Layer ->> Application: {"count":10,[{"name":"apple1","color":"red"}]}
+    Translation Layer ->> Application: {"count":10,"entity":[{"name":"apple1","color":"red"}]}
     Note over Translation Layer,Application: This response should still be the same
 ```
 
