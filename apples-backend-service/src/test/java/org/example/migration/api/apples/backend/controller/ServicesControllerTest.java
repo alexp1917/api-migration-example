@@ -39,6 +39,20 @@ class ServicesControllerTest extends BaseTest {
         assertThat(body.getExpires(), is(lessThanOrEqualTo(authProperties.getTokenTimeout())));
         assertThat(body.getToken(), is(notNullValue()));
         log.info("successfully requested a token without service: {}", body.getToken());
+
+        EntityExchangeResult<TokenResponse> exchangeWithService = webTestClient.post()
+                .uri(u -> u.path("/services/token").queryParam("service", "orchard").build())
+                .bodyValue(new TokenRequest().setId("username").setSecret("password"))
+                .exchange().expectBody(TokenResponse.class).returnResult();
+
+        assertThat(exchangeWithService.getStatus(), is(HttpStatus.OK));
+        TokenResponse withService = exchangeWithService.getResponseBody();
+        assertThat(withService, is(notNullValue()));
+        assertThat(withService.getExpires(), is(greaterThan(0)));
+        assertThat(withService.getExpires(), is(lessThanOrEqualTo(authProperties.getTokenTimeout())));
+        assertThat(withService.getToken(), is(notNullValue()));
+        assertThat(withService.getToken(), containsStringIgnoringCase("you can access orchard"));
+        log.info("successfully requested a token without service: {}", withService.getToken());
     }
 
 }
