@@ -12,3 +12,5 @@ dependencies {
 }
 
 tasks.withType(Test) { useJUnitPlatform() }
+
+configurations { compileOnly { extendsFrom annotationProcessor } }
